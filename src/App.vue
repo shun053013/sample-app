@@ -1,29 +1,33 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+<template> 
+<v-app>
+                        <v-app-bar
+                          app
+                          color="primary"
+dark
+                        >
+                          <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon> 
+                          <v-toolbar-title>マイアドレス帳</v-toolbar-title>
+                          <v-spacer></v-spacer>
+                        </v-app-bar>
+                        <SideNav/>
+                        <v-content>
+                          <v-container fluid fill-height align-start>
+                            <router-view/>
+                          </v-container>
+                        </v-content>
+                      </v-app>
 </template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
-
-@Component({
+<script>
+import SideNav from './components/SideNav'
+import { mapActions } from 'vuex'
+export default {
+  name: 'App',
   components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
-</script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+SideNav },
+  data: () => ({
+    //
+  }),
+  methods: {
+    ...mapActions(['toggleSideMenu'])
+  }
+}; </script>
